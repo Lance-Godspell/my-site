@@ -25,7 +25,7 @@
       <nav class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <a href="../index.html#posts" class="flex items-center gap-3">
           <div class="h-8 w-8 rounded-xl bg-accent-primary/20 ring-1 ring-accent-primary/30 grid place-items-center"><span class="text-accent-primary font-black">M</span></div>
-          <span class="font-semibold tracking-tight">Moody Blog</span>
+          <span class="font-semibold tracking-tight" id="site-title">Moody Blog</span>
         </a>
         <div class="flex items-center gap-3">
           <a href="../index.html#posts" class="nav-link">Posts</a>
@@ -57,12 +57,13 @@
     <footer class="border-t border-white/10 py-10">
       <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <a href="../index.html#posts" class="btn-ghost">← Back to Posts</a>
-        <div class="text-sm text-slate-400">© <span id="year"></span> Moody Blog</div>
+        <div class="text-sm text-slate-400">© <span id="year"></span> <span id="site-title-footer">Moody Blog</span></div>
       </div>
     </footer>
 
     <script>
       (function(){
+        var s = document.createElement('script'); s.src = '../site.config.js'; document.head.appendChild(s);
         const saved = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         document.documentElement.classList.toggle('dark', (saved || (prefersDark?'dark':'light')) === 'dark');
@@ -71,9 +72,13 @@
           localStorage.setItem('theme', isDark ? 'dark' : 'light');
         });
         document.getElementById('year').textContent = new Date().getFullYear();
+        setTimeout(() => { if (window.SITE && window.SITE.title){
+          const t = window.SITE.title;
+          const h = document.getElementById('site-title'); if (h) h.textContent = t;
+          const f = document.getElementById('site-title-footer'); if (f) f.textContent = t;
+          const og = document.querySelector('meta[property="og:title"]'); if (og) og.setAttribute('content', t);
+        }}, 0);
       })();
     </script>
   </body>
   </html>
-
-
