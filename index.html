@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A dark, moody blog with featured posts, categories, and popular reads." />
+    <meta name="theme-color" content="#0f1222" />
+    <meta property="og:title" content="FI" />
+    <meta property="og:description" content="Dark, moody purples/blues with featured posts and categories." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="./images/hero.jpeg" />
+    <title>FI</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              base: {
+                900: '#0f1222',
+                800: '#1b1532',
+              },
+              card: {
+                900: '#201a37',
+                800: '#231b3f',
+              },
+              accent: {
+                primary: '#7c5cff',
+                secondary: '#22d3ee',
+              },
+            },
+            fontFamily: {
+              sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial'],
+            },
+            borderRadius: {
+              '2xl': '1rem',
+              '3xl': '1.25rem',
+            },
+            boxShadow: {
+              soft: '0 10px 30px -10px rgba(124,92,255,0.25)',
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Icons (Lucide) -->
+    <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js" defer></script>
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="bg-gradient-to-b from-base-900 to-base-800 text-slate-100 font-sans antialiased">
+    <!-- Particles background -->
+    <div class="pointer-events-none fixed inset-0 opacity-30 [mask-image:radial-gradient(900px_600px_at_70%_10%,#000,transparent)]">
+      <div class="particles"></div>
+    </div>
+
+    <!-- Sticky Nav -->
+    <header class="sticky top-0 z-50 supports-backdrop-blur:bg-white/5 bg-black/30 backdrop-blur-md border-b border-white/10">
+      <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <img src="./images/avatar.jpg" alt="Site avatar" class="h-8 w-8 rounded-xl ring-1 ring-white/10 object-cover" onerror="this.src='./images/placeholder.svg'" />
+          <span class="font-semibold tracking-tight">Moody Blog</span>
+        </div>
+        <div class="hidden md:flex items-center gap-6 text-sm">
+          <a href="#home" class="nav-link">Home</a>
+          <a href="#posts" class="nav-link">Posts</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        <div class="flex items-center gap-4">
+          <a class="icon-btn" href="https://x.com" aria-label="X" target="_blank" rel="noopener"> 
+            <i data-lucide="twitter"></i>
+          </a>
+          <a class="icon-btn" href="https://github.com" aria-label="GitHub" target="_blank" rel="noopener"> 
+            <i data-lucide="github"></i>
+          </a>
+          <a class="icon-btn" href="https://linkedin.com" aria-label="LinkedIn" target="_blank" rel="noopener"> 
+            <i data-lucide="linkedin"></i>
+          </a>
+          <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">
+            <i data-lucide="moon"></i>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main id="home" class="relative">
+      <!-- Hero -->
+      <section class="relative">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-24 grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <div class="inline-flex items-center gap-2 rounded-full bg-accent-primary/10 ring-1 ring-accent-primary/30 px-3 py-1 mb-5">
+              <span class="h-2 w-2 rounded-full bg-accent-secondary animate-pulse"></span>
+              <span class="text-xs tracking-wide text-accent-secondary">Featured</span>
+            </div>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
+              Stories in Shadow and Light
+            </h1>
+            <p class="mt-4 text-slate-300 max-w-xl">
+              Dark, moody essays and fiction. Crafted with care, best read at dusk.
+            </p>
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a href="#posts" class="btn-primary">Read the Blog</a>
+              <a href="#contact" class="btn-ghost">Contact</a>
+            </div>
+          </div>
+          <div class="relative">
+            <div class="relative group">
+              <img src="./images/hero.jpg" alt="Decorative hero" loading="lazy" class="w-full h-auto rounded-3xl shadow-soft ring-1 ring-white/10 object-cover transform-gpu transition will-change-transform group-hover:scale-[1.01]" onerror="this.src='./images/placeholder.svg'" />
+              <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-accent-primary/20 via-transparent to-accent-secondary/20 mix-blend-overlay pointer-events-none"></div>
+              <div class="float-sparkles pointer-events-none"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Post -->
+      <section id="featured" aria-labelledby="featured-title" class="py-10 lg:py-12">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="flex items-baseline justify-between mb-6">
+            <h2 id="featured-title" class="section-title">Aktuelle Posts ▸</h2>
+          </div>
+          <div id="featured-container" class="grid"></div>
+        </div>
+      </section>
+
+      <!-- Posts & Filters -->
+      <section id="posts" aria-labelledby="posts-title" class="py-6 lg:py-10">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+            <h2 id="posts-title" class="section-title">Recent Posts</h2>
+            <div class="flex flex-wrap items-center gap-3">
+              <div class="relative">
+                <input id="search" type="search" placeholder="Search posts..." aria-label="Search posts" class="w-64 md:w-72 lg:w-80 bg-card-900/70 ring-1 ring-white/10 rounded-2xl px-4 py-2.5 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-accent-primary" />
+                <span class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs">⌘K</span>
+              </div>
+              <div id="tag-chips" class="flex flex-wrap gap-2"></div>
+            </div>
+          </div>
+
+          <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+          <div class="mt-8 flex justify-center">
+            <button id="load-more" class="btn-ghost">Load more</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Categories -->
+      <section id="collections" class="py-10 lg:py-14">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 class="section-title mb-6">Collections</h2>
+          <div id="categories" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"></div>
+        </div>
+      </section>
+
+      <!-- Popular Reads -->
+      <section id="popular" class="py-8 lg:py-12">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="flex items-baseline justify-between mb-4">
+            <h2 class="section-title">Popular Reads</h2>
+          </div>
+          <div id="popular-row" class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2"></div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section id="about" class="py-10 lg:py-16">
+        <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+          <img src="./images/avatar.jpg" alt="Author avatar" loading="lazy" class="mx-auto h-24 w-24 rounded-2xl ring-1 ring-white/10 object-cover" onerror="this.src='./images/placeholder.svg'" />
+          <h2 class="section-title mt-4">About the Author</h2>
+          <p class="mt-2 text-slate-300">I write about writing, tech, and life. Occasional fiction. Always curious.</p>
+          <div class="mt-5 flex justify-center gap-3">
+            <a class="btn-ghost" href="https://twitter.com" target="_blank" rel="noopener">Follow</a>
+            <a class="btn-primary" href="#" download>Download Media Kit</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Newsletter -->
+      <section id="contact" class="py-8 lg:py-12">
+        <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <div class="card p-6 lg:p-8">
+            <h2 class="section-title">Newsletter</h2>
+            <p class="text-slate-300">No spam. Just occasional updates when new posts drop.</p>
+            <form id="newsletter-form" class="mt-4 flex flex-col sm:flex-row gap-3" novalidate>
+              <input id="email" type="email" required placeholder="you@example.com" aria-label="Email address" class="flex-1 bg-card-900/70 ring-1 ring-white/10 rounded-2xl px-4 py-2.5 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-accent-primary" />
+              <button type="submit" class="btn-primary">Subscribe</button>
+            </form>
+            <p id="email-error" class="sr-only text-rose-300 mt-2">Please enter a valid email.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-white/10 py-10">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="text-sm text-slate-400">© <span id="year"></span> Moody Blog. All rights reserved.</div>
+        <div class="flex items-center gap-4">
+          <a href="#home" class="nav-link">Home</a>
+          <a href="#posts" class="nav-link">Posts</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#contact" class="nav-link">Contact</a>
+          <button id="theme-toggle-footer" class="icon-btn" aria-label="Toggle theme">
+            <i data-lucide="moon"></i>
+          </button>
+        </div>
+      </div>
+    </footer>
+
+    <div id="modal-root" aria-live="polite"></div>
+
+    <script src="./data.js"></script>
+    <script src="./data.generated.js"></script>
+    <script src="./app.js" defer></script>
+  </body>
+  </html>
+
+

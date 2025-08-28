@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="{{excerpt}}" />
+    <meta name="theme-color" content="#0f1222" />
+    <meta property="og:title" content="{{title}}" />
+    <meta property="og:description" content="{{excerpt}}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="{{image}}" />
+    <title>{{title}}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = { darkMode: 'class', theme: { extend: { colors: { base:{900:'#0f1222',800:'#1b1532'}, card:{900:'#201a37',800:'#231b3f'}, accent:{ primary:'#7c5cff', secondary:'#22d3ee' } }, fontFamily:{ sans:['Inter','ui-sans-serif','system-ui','Segoe UI','Roboto','Helvetica Neue','Arial'] } } } };
+    </script>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="bg-gradient-to-b from-base-900 to-base-800 text-slate-100 font-sans antialiased">
+    <header class="sticky top-0 z-50 supports-backdrop-blur:bg-white/5 bg-black/30 backdrop-blur-md border-b border-white/10">
+      <nav class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <a href="../index.html#posts" class="flex items-center gap-3">
+          <div class="h-8 w-8 rounded-xl bg-accent-primary/20 ring-1 ring-accent-primary/30 grid place-items-center"><span class="text-accent-primary font-black">M</span></div>
+          <span class="font-semibold tracking-tight">Moody Blog</span>
+        </a>
+        <div class="flex items-center gap-3">
+          <a href="../index.html#posts" class="nav-link">Posts</a>
+          <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z"/></svg></button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+      <article>
+        <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">{{title}}</h1>
+        <div class="mt-3 flex items-center gap-3 text-slate-400">
+          <img src="{{avatar}}" alt="Author avatar" class="h-9 w-9 rounded-xl ring-1 ring-white/10 object-cover" onerror="this.src='../images/placeholder.svg'" />
+          <span>{{author}}</span>
+          <span aria-hidden="true">•</span>
+          <time datetime="{{dateISO}}">{{datePretty}}</time>
+          <span aria-hidden="true">•</span>
+          <span>{{readMins}} min</span>
+        </div>
+
+        <div class="mt-6">
+          <img src="{{image}}" alt="{{title}}" class="w-full rounded-2xl ring-1 ring-white/10" onerror="this.src='../images/placeholder.svg'" />
+        </div>
+
+        <div class="prose prose-invert max-w-none mt-8">{{content}}</div>
+      </article>
+    </main>
+
+    <footer class="border-t border-white/10 py-10">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <a href="../index.html#posts" class="btn-ghost">← Back to Posts</a>
+        <div class="text-sm text-slate-400">© <span id="year"></span> Moody Blog</div>
+      </div>
+    </footer>
+
+    <script>
+      (function(){
+        const saved = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.classList.toggle('dark', (saved || (prefersDark?'dark':'light')) === 'dark');
+        document.getElementById('theme-toggle')?.addEventListener('click', () => {
+          const isDark = document.documentElement.classList.toggle('dark');
+          localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+        document.getElementById('year').textContent = new Date().getFullYear();
+      })();
+    </script>
+  </body>
+  </html>
+
+
